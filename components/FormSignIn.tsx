@@ -16,8 +16,8 @@ const FormSignIn: React.FC<Props> = ({ setMessage }) => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    let email = refEmail.current?.value;
-    let password = refPassword.current?.value;
+    const email = refEmail.current?.value;
+    const password = refPassword.current?.value;
 
     try {
       if (!email || !password) {
@@ -37,10 +37,10 @@ const FormSignIn: React.FC<Props> = ({ setMessage }) => {
         throw new Error(result.message)
       }
       
-    } catch (error: any) {
+    } catch (error) {
       if (refEmail.current) refEmail.current.value = "";
       if (refPassword.current) refPassword.current.value = "";
-      setMessage(error.message || "An unexpected error occurred");
+      setMessage((error as Error).message || "An unexpected (error as Error) occurred");
     }
   };
   return (

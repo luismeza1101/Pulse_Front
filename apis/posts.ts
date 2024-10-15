@@ -22,10 +22,7 @@ export const getPostByUser = async (
   }
 };
 
-export const getAllPosts = async (
-  setLoading: (load: boolean) => void
-) => {
-  try {
+export const getAllPosts = async () => {
     let posts: Posts[] = []
     const response = await fetch("http://localhost:8000/posts");
     if (!response.ok) {
@@ -34,11 +31,6 @@ export const getAllPosts = async (
     const data = await response.json();
     posts = data
     return posts
-  } catch (error) {
-    console.error(error);
-  } finally {
-    setLoading(false);
-  }
 };
 
 export const deletePostByBD = async (post_id: string) => {

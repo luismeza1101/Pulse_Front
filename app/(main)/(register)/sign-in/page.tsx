@@ -6,7 +6,7 @@ import useAuthCheck from "@hooks/userAuth";
 import ResponseMessage from "@components/ResponseMessage";
 import FormSignIn from "@components/FormSignIn";
 
-export default function Home() {
+export default function SignInPage() {
   const [message, setMessage] = useState<string | null>(null);
   
   useAuthCheck();
@@ -29,7 +29,7 @@ export default function Home() {
 
         <footer className="relative flex items-center justify-center">
           <p className="text-center">
-            Don't have an account?{" "}
+            Don &apos; t have an account?{" "}
             <Link href="/log-in" className="text-blue-500 underline">
               Log in now
             </Link>

@@ -10,7 +10,7 @@ import getData from "@hooks/getData";
 import { changeDataUser, deleteUserFromBD } from "@apis/dataUser";
 import { useRouter } from "next/navigation";
 
-const page = () => {
+const SettingsPage = () => {
   const { userEmail, userName, userID, setUserName, setUserImg, setUserEmail, setUserID } = useUser();
   const refNewName = useRef<HTMLInputElement | null>(null);
   const refNewLastName = useRef<HTMLInputElement | null>(null);
@@ -18,16 +18,17 @@ const page = () => {
   const router = useRouter()
 
   useAuthCheck();
+
   useEffect(() => {
     if (!userID) {
       getData({
         setUserEmail: setUserEmail,
         setUserImg: setUserImg,
         setUserName: setUserName,
-        setUserID: setUserID
+        setUserID: setUserID,
       });
     }
-  }, []);
+  }, [userID, setUserEmail, setUserName, setUserImg, setUserID]);
 
 
   const handleChangeData = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -49,8 +50,8 @@ const page = () => {
       setUserImg(newImgUsers(`${newName} ${newLastName}`))
       setMessage({message: response.message, type: 'succes'})
 
-    } catch (error: any) {
-      console.error(error.message || 'Unexpected error occurred. Please try again.')
+    } catch (error) {
+      console.error((error as Error).message || 'Unexpected error occurred. Please try again.');
     }
 
     if(refNewLastName.current?.value) refNewLastName.current.value = ''
@@ -58,11 +59,15 @@ const page = () => {
   };
 
   const deleteUser = async () => {
+    try {
       const result = await deleteUserFromBD(userID)
       if(result.message){
         localStorage.removeItem('user_id')
         router.push('/')
-      }
+      }      
+    } catch (error) {
+      console.error((error as Error).message || 'Unexpected error ocurred')
+    }
   }
 
   useEffect(() => {
@@ -115,4 +120,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default SettingsPage;

@@ -5,7 +5,7 @@ import ResponseMessage from "@components/ResponseMessage";
 import useAuthCheck from "@hooks/userAuth";
 import FormLogIn from "@components/FormLogIn";
 
-const page = () => {
+const LogInPage = () => {
   const [message, setMessage] = useState<string | null>(null);
 
   useAuthCheck();
@@ -34,4 +34,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default LogInPage;

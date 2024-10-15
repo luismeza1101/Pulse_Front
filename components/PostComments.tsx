@@ -35,7 +35,7 @@ const Comments: React.FC<Props> = ({
         setComments(resultComments)
     }
     getAllComments()
-  }, [])
+  }, [post_id])
 
   const handleAddComment = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -89,8 +89,8 @@ const Comments: React.FC<Props> = ({
         <div className="flex-1 overflow-y-auto mx-5">
           <p className="border-2 border-gray-500 rounded-lg p-4 ">{content}</p>
           <div className="mx-5 mt-5 flex flex-col gap-3">
-            {comments.map(comment => (
-              <Comment content={comment.content} name={comment.name}/>
+            {comments.map((comment, index) => (
+              <Comment content={comment.content} name={comment.name} key={index}/>
             ))}
           </div>
         </div>

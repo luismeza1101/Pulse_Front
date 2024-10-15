@@ -11,7 +11,7 @@ import { getAllPosts } from "@apis/posts";
 import PublicateForm from "@components/PublicateForm";
 import ResponseMessage from "@components/ResponseMessage";
 
-export default function Home() {
+export default function FeedPage() {
   const [posts, setPosts] = useState<Posts[]>([]);
   const [loading, setLoading] = useState(true);
   const [showFormPost, setShowFormPost] = useState(false);
@@ -37,16 +37,22 @@ export default function Home() {
         setUserID: setUserID,
       });
     }
-  }, []);
+  }, [userID, setUserEmail, setUserName, setUserImg, setUserID]);
 
   useEffect(() => {
     const getPosts = async () => {
-      if(upPost){
-        const returnPosts = await getAllPosts(setLoading);
-        if(returnPosts){
-          setPosts(returnPosts)
-          setUpPost(false)
+      try {
+        if(upPost){
+          const returnPosts = await getAllPosts();
+          if(returnPosts){
+            setPosts(returnPosts)
+            setUpPost(false)
+          }
         }
+      } catch (error) {
+        console.error((error as Error).message || 'Error in fecth posts')
+      } finally {
+        setLoading(false)
       }
     }
     getPosts()
@@ -92,7 +98,7 @@ export default function Home() {
           </section>
           <main className="w-full rounded-2xl border-2 border-gray-600 p-4 flex flex-col gap-3">
             {posts.length == 0 && (
-              <p className="text-center">Don't exits posts</p>
+              <p className="text-center">Don &apos; t exits posts</p>
             )}
             {posts.map((post) => (
               <Publication

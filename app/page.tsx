@@ -1,7 +1,7 @@
 import Image from "next/image"
 import Link from "next/link"
 
-const pageMain = () => {
+const MainPage = () => {
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -23,4 +23,4 @@ const pageMain = () => {
   )
 }
 
-export default pageMain
+export default MainPage

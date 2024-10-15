@@ -10,7 +10,7 @@ import useAuthCheck from "@hooks/userAuth";
 import { MyPosts, TypeMessage } from "@types";
 import { useEffect, useState } from "react";
 
-const page = () => {
+const MyPostsPage = () => {
   const [myPosts, setMyPosts] = useState<MyPosts[]>([]);
   const { userID, userName, setUserEmail, setUserImg, setUserName, setUserID} = useUser();
   const [loading, setLoading] = useState(true);
@@ -38,7 +38,7 @@ const page = () => {
       }
     }
     getPosts()
-  }, [deletePost, userID])
+  }, [deletePost, userID, setUserEmail, setUserImg, setUserName, setUserID])
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -61,7 +61,7 @@ const page = () => {
               <ResponseMessage data={message}/>
             </div>
             )}
-          {myPosts.length == 0 && <p>Don't exist posts</p>}
+          {myPosts.length == 0 && <p>Don &apos; t exist posts</p>}
           {myPosts.map((post) => (
             <Publication
               key={post.post_id}
@@ -80,4 +80,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default MyPostsPage;

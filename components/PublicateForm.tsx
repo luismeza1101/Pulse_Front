@@ -36,9 +36,9 @@ const PublicateForm: React.FC<Props> = ({ setShowFormPost, setMessage, setUpPost
 
       setUpPost(true)
       handleShowFormPost();
-    } catch (error: any) {
+    } catch (error) {
       setMessage({
-        message: error.message,
+        message: (error as Error).message,
         type: "error",
       });
       handleShowFormPost();

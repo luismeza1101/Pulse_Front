@@ -58,8 +58,8 @@ const FormLogIn: React.FC<Props> = ({ setMessage }) => {
       
       router.push("/feed");
 
-    } catch (error: any) {
-      setMessage(error.message);
+    } catch (error) {
+      setMessage((error as Error).message);
       if (refName.current) refName.current.value = "";
       if (refLastName.current) refLastName.current.value = "";
       if (refEmail.current) refEmail.current.value = "";

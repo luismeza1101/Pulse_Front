@@ -1,41 +1,33 @@
 import { Credentials, User } from "@types";
 
-export async function fetchLogin (credentials: Credentials){
-    try {
-        const response = await fetch("http://localhost:8000/login/", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(credentials),
-          });
-    
-          if (!response.ok) {
-            const errorData = await response.json();
-            throw new Error(errorData.detail || "Login failed");
-          }
+export async function fetchLogin(credentials: Credentials) {
+  const response = await fetch("http://localhost:8000/login/", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(credentials),
+  });
 
-          return response.json()
-    } catch (error) {
-        throw error
-    }
+  if (!response.ok) {
+    const errorData = await response.json();
+    throw new Error(errorData.detail || "Login failed");
+  }
+
+  return response.json();
 }
 
-export async function fetchRegister (dataUser: User){
-    try {
-        const response = await fetch("http://localhost:8000/register/", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(dataUser),
-          });
-    
-          if (!response.ok) {
-            const errorData = await response.json();
-            throw new Error(errorData.detail || "Error in the user creation");
-          }
+export async function fetchRegister(dataUser: User) {
+  const response = await fetch("http://localhost:8000/register/", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(dataUser),
+  });
 
-          return await response.json()
-    } catch (error) {
-        throw error
-    }
+  if (!response.ok) {
+    const errorData = await response.json();
+    throw new Error(errorData.detail || "Error in the user creation");
+  }
+
+  return await response.json();
 }
 
 export async function getDataUser(user_id: string) {
@@ -47,8 +39,8 @@ export async function getDataUser(user_id: string) {
       throw new Error(errorData.detail || "Error in the user creation");
     }
 
-    return await response.json()
+    return await response.json();
   } catch (error) {
-    throw (error)
+    throw error;
   }
 }
