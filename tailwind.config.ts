@@ -9,9 +9,12 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
+        'color-button': '#007aff',
+        'color-button-hover': '#0394fd',
       },
+      screens: {
+        'desktop': '830px'
+      }
     },
   },
   plugins: [],
