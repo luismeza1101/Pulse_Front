@@ -1,8 +1,11 @@
 import { postComment } from "@types";
 
+const apiUrl = process.env.NEXT_PUBLIC_URL_BACK;
+
+
 export const getComments = async (post_id: string) => {
   try {
-    const response = await fetch(`http://localhost:8000/comments/${post_id}`);
+    const response = await fetch(`${apiUrl}/comments/${post_id}`);
 
     if (!response.ok) {
       throw new Error("Error in fetch comments");
@@ -16,7 +19,7 @@ export const getComments = async (post_id: string) => {
 };
 
 export const addComment = async (data: postComment) => {
-  const response = await fetch("http://localhost:8000/add_comment/", {
+  const response = await fetch(`${apiUrl}/add_comment/`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(data),

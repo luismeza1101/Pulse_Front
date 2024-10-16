@@ -1,12 +1,15 @@
 import { MyPosts, Posts } from "@types";
 
+const apiUrl = process.env.NEXT_PUBLIC_URL_BACK;
+
+
 export const getPostByUser = async (
   user_id: string | null,
   setLoading: (load: boolean) => void,
 ) => {
   try {
     let postsByUser: MyPosts[] = []
-    const response = await fetch(`http://localhost:8000/post-by-id/${user_id}`);
+    const response = await fetch(`${apiUrl}/post-by-id/${user_id}`);
 
     if (!response.ok) {
       throw new Error("Error in fetching posts");
@@ -24,7 +27,7 @@ export const getPostByUser = async (
 
 export const getAllPosts = async () => {
     let posts: Posts[] = []
-    const response = await fetch("http://localhost:8000/posts");
+    const response = await fetch(`${apiUrl}/posts`);
     if (!response.ok) {
       throw new Error("Error fetching posts");
     }
@@ -36,7 +39,7 @@ export const getAllPosts = async () => {
 export const deletePostByBD = async (post_id: string) => {
   try {
     const response = await fetch(
-      `http://localhost:8000/delete_post/${post_id}`,
+      `${apiUrl}/delete_post/${post_id}`,
       {
         method: "DELETE",
         headers: {
@@ -57,7 +60,7 @@ export const deletePostByBD = async (post_id: string) => {
 
 export const addPost = async (userID: string  | null, content: string) => {
   try {
-    const response = await fetch("http://localhost:8000/post/", {
+    const response = await fetch(`${apiUrl}/post/`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ user_id: userID, content: content }),

@@ -1,7 +1,10 @@
 import { NewInfoUser } from "@types";
 
+const apiUrl = process.env.NEXT_PUBLIC_URL_BACK;
+
+
 export const changeDataUser = async (newInfo: NewInfoUser) => {
-  const response = await fetch("http://localhost:8000/edit_user/", {
+  const response = await fetch(`${apiUrl}/edit_user/`, {
     method: "PATCH",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(newInfo),
@@ -16,7 +19,7 @@ export const changeDataUser = async (newInfo: NewInfoUser) => {
 };
 
 export const deleteUserFromBD = async (userID: string | null) => {
-  const response = await fetch(`http://localhost:8000/delete-user/${userID}`, {
+  const response = await fetch(`${apiUrl}/delete-user/${userID}`, {
     method: "PATCH",
     headers: { "Content-Type": "application/json" },
   });

@@ -1,7 +1,10 @@
 import { Credentials, User } from "@types";
 
+const apiUrl = process.env.NEXT_PUBLIC_URL_BACK;
+
+
 export async function fetchLogin(credentials: Credentials) {
-  const response = await fetch("http://localhost:8000/login/", {
+  const response = await fetch(`${apiUrl}/login/`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(credentials),
@@ -16,7 +19,7 @@ export async function fetchLogin(credentials: Credentials) {
 }
 
 export async function fetchRegister(dataUser: User) {
-  const response = await fetch("http://localhost:8000/register/", {
+  const response = await fetch(`${apiUrl}/register/`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(dataUser),
@@ -32,7 +35,7 @@ export async function fetchRegister(dataUser: User) {
 
 export async function getDataUser(user_id: string) {
   try {
-    const response = await fetch(`http://localhost:8000/info_user/${user_id}`);
+    const response = await fetch(`${apiUrl}/info_user/${user_id}`);
 
     if (!response.ok) {
       const errorData = await response.json();
