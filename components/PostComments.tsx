@@ -66,7 +66,7 @@ const Comments: React.FC<Props> = ({
 
   return (
     <div className="fixed inset-0 z-50 bg-black bg-opacity-45 flex items-center justify-center h-screen">
-      <div className="bg-white rounded-lg h-[90%] w-[95%] max-w-[700px] flex flex-col justify-between gap-5 overflow-hidden">
+      <div className="bg-white rounded-lg h-[80%] w-[95%] max-w-[700px] flex flex-col justify-between gap-5 overflow-hidden">
         <div className="sticky top-0 border-b-2 p-4 bg-white z-10">
           <h4>{name}</h4>
           <span>{date}</span>
